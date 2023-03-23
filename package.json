@@ -1,0 +1,29 @@
+{
+  "name": "sizechart-e2e-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run -b '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mercadolibre/fury_sizechart-e2e-tests.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mercadolibre/fury_sizechart-e2e-tests/issues"
+  },
+  "homepage": "https://github.com/mercadolibre/fury_sizechart-e2e-tests#readme",
+  "devDependencies": {
+    "cypress": "^12.2.0",
+    "cypress-plugin-tab": "^1.0.5",
+    "cypress-slow-down": "^1.2.1"
+  },
+  "dependencies": {
+    "short-uuid": "^4.2.2"
+  }
+}
