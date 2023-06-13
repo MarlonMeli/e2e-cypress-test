@@ -17,7 +17,6 @@ describe('EMON', () => {
     cy.waitForReact();
     cy.visit('https://mercadolibre.com.ar/publicaciones/editor-masivo');
     cy.waitForReact();
-    cy.get('.andes-form-control__field').contains('Buscar por # o título').type('1149142594');
-    cy.get('.sc-bulk-input-search').contains('.sc-bulk-hover-button').click();
+    cy.get('.andes-form-control__field').type('1149142594{enter}');
   }); 
 });
