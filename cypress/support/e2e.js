@@ -16,9 +16,7 @@
 // Import commands.js using ES2015 syntax:
 import 'cypress-plugin-tab';
 import './commands';
-
-import '../e2e/gdt/commands';
-import '../e2e/emon/commons/commands';
+import '../e2e/commons/commands';
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
