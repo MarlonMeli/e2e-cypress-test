@@ -10,22 +10,25 @@ describe('EMON LEVEL 3', () => {
       let inactivas;
       let total;
       cy.Login();
-      cy.waitForReact();
       cy.visit('https://mercadolibre.com.ar/publicaciones/editor-masivo');
       cy.totalItems().then(totalItems => {
         total = get_number(totalItems);
-        cy.log("total = " + total);
 
         cy.activeItems().then(activeItems => {
           activas = get_number(activeItems);
-          cy.log("activas = " + activas);
           
           cy.inactiveItems().then(inactiveItems => {
           inactivas = get_number(inactiveItems);
+
+          cy.quitFilters();
+
+          //Se agregan log para el video
+          cy.log("total = " + total);
           cy.log("inactivas = " + inactivas);
+          cy.log("activas = " + activas);
 
           expect(activas + inactivas).eq(total);
-          
+
           });
         });
       })
