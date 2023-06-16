@@ -40,8 +40,55 @@ Cypress.Commands.add('Login', () => {
     cy.contains('Ingresá tu contraseña de Mercado Libre');
     cy.get('[data-testid="password"]').type(password);
     cy.get('[data-testid="action-complete"]').click();
-})
+    cy.waitForReact();
+});
+
+Cypress.Commands.add('activeItems', () => {
+    cy.filtersClick();
+    cy.get('#ACTIVE').click();
+    cy.aplicateClick();
+    cy.filtersClick();
+    cy.aplicateClick();
+    cy.wait(2000);
+    return cy.get('.sc-bulk-items-quantity__text').invoke('text');
+    
+});
+
+Cypress.Commands.add('inactiveItems', () => {
+    cy.filtersClick();
+    cy.get('#ACTIVE').click();
+    cy.waitForReact();
+    cy.get('#INACTIVE').click();
+    cy.aplicateClick();
+    cy.filtersClick();
+    cy.aplicateClick();
+    cy.wait(2000);
+    return cy.get('.sc-bulk-items-quantity__text').invoke('text');
+});
+
+Cypress.Commands.add('totalItems', () => {
+    return cy.get('.sc-bulk-items-quantity__text').invoke('text');
+});
 
 Cypress.Commands.add('waitForReact', () => {
     cy.wait(500);
+});
+
+Cypress.Commands.add('filtersClick', () => {
+    cy.waitForReact();
+    cy.get('[type="button"]').contains('Filtros').click();
+    cy.waitForReact();
+});
+
+Cypress.Commands.add('aplicateClick', () => {
+    cy.waitForReact();
+    cy.get('.andes-button').contains('Aplicar').click();
+    cy.waitForReact();
+});
+
+Cypress.Commands.add('quitFilters', () => {
+    cy.waitForReact();
+    cy.filtersClick();
+    cy.get('#INACTIVE').click();
+    cy.aplicateClick();
 });
