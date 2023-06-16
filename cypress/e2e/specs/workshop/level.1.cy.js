@@ -12,6 +12,8 @@ describe('EMON', () => {
   it('Search Iphone', () => {
     cy.get('.nav-search-input').type('Iphone 14');
     cy.get('.nav-search-btn').click();
-    cy.get(".ui-search-breadcrumb__title").should("contain", "Iphone 14");
+    cy.get(".ui-search-breadcrumb__title").then(($title_bradcrumb) => {
+      expect($title_bradcrumb.text()).eq('Iphone 14');
+    });
   });
 });

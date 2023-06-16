@@ -6,14 +6,16 @@ describe('EMON', () => {
   });
 
   it('Mercadolibre is there', () => {
-    cy.contains('Ingresa');
-  });
-
-  it('Login into Meli', () => {
-    cy.Login().wait(500);
+    cy.get('#nav-header-menu > a:nth-child(2)').click();
+    cy.get('.andes-form-control__field').type('TETE7160223');
+    cy.get('.login-form__submit').click();
+    cy.waitForReact();
+    cy.contains('Ingresá tu contraseña de Mercado Libre');
+    cy.get('[data-testid="password"]').type('ogr~bg|4ist9xf9d');
+    cy.get('[data-testid="action-complete"]').click();
+    cy.waitForReact();
     cy.visit('https://mercadolibre.com.ar/publicaciones/editor-masivo');
-    cy.wait(1500);
-    cy.get('input[placeholder="Buscar por # o título"]').type('hola').type('{enter}');
-    cy.contains('Remera Test Talle H1 Hola /h1 - Check');
-  });
+    cy.waitForReact();
+    cy.get('.andes-form-control__field').type('1149142594{enter}');
+  });  
 });
