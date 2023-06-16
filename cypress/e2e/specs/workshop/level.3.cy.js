@@ -5,23 +5,34 @@ describe('EMON LEVEL 3', () => {
       cy.visit('https://mercadolibre.com.ar');
   });
 
-  it('...', () => {
-      // Level Three
+  it('Test: itemsActive + itemsInactive = totalItems', () => {
+      let activas;
+      let inactivas;
+      let total;
       cy.Login();
       cy.waitForReact();
       cy.visit('https://mercadolibre.com.ar/publicaciones/editor-masivo');
-      cy.waitForReact();
-      cy.contains('Filtros');
-      cy.get('[type="button"]').contains('Filtros').click();
-      cy.waitForReact();
-      cy.get('[id="ACTIVE"]').click();
-      cy.get('[id="INACTIVE"]').click();
-      cy.get('.andes-button').contains('Aplicar').click();
-      cy.waitForReact();
-      cy.get('.sc-bulk-items-quantity__text').then($totalItems => {
-        const items = $totalItems.text();
-        cy.log(items);
-        expect(items).eq('562 publicaciones')
+      cy.totalItems().then(totalItems => {
+        total = get_number(totalItems);
+        cy.log("total = " + total);
+
+        cy.activeItems().then(activeItems => {
+          activas = get_number(activeItems);
+          cy.log("activas = " + activas);
+          
+          cy.inactiveItems().then(inactiveItems => {
+          inactivas = get_number(inactiveItems);
+          cy.log("inactivas = " + inactivas);
+
+          expect(activas + inactivas).eq(total);
+          
+          });
+        });
       })
   }); 
 });
+
+function get_number(text){
+  var number = Number((text.split(' '))[0]);
+  return number;
+};
