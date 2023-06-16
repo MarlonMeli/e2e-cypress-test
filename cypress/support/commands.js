@@ -48,7 +48,7 @@ Cypress.Commands.add('waitForReact', () => {
 
 Cypress.Commands.add('activeItems', () => {
     cy.filtersClick();
-    cy.get('[id="ACTIVE"]').click();
+    cy.get('#ACTIVE').click();
     cy.aplicateClick();
     cy.filtersClick();
     cy.aplicateClick();
@@ -57,9 +57,9 @@ Cypress.Commands.add('activeItems', () => {
 
 Cypress.Commands.add('inactiveItems', () => {
     cy.filtersClick();
-    cy.get('[id="ACTIVE"]').click();
+    cy.get('#ACTIVE').click();
     cy.waitForReact();
-    cy.get('[id="INACTIVE"]').click();
+    cy.get('#INACTIVE').click();
     cy.aplicateClick();
     cy.filtersClick();
     cy.aplicateClick();
@@ -85,7 +85,7 @@ Cypress.Commands.add('aplicateClick', () => {
 Cypress.Commands.add('QuitFilters', () => {
     cy.waitForReact();
     cy.filtersClick();
-    cy.get('[id="INACTIVE"]').click();
+    cy.get('#INACTIVE').click();
     cy.aplicateClick();
     cy.filtersClick();
     cy.aplicateClick();
